@@ -142,8 +142,6 @@ export default class NanoSpeedCache<V = any> {
     return this;
   }
 
-  // ───────────────────────────── TTL Management ─────────────────────────────
-
   ttl(key: string): number | null;
   ttl(key: string, newTTL: number): this;
   ttl(key: string, newTTL?: number): number | null | this {
@@ -160,8 +158,6 @@ export default class NanoSpeedCache<V = any> {
     return remaining > 0 ? remaining : 0;
   }
 
-  // ───────────────────────────── Batch Operations ─────────────────────────────
-
   mget(keys: string[]): (V | undefined)[] {
     return keys.map((k) => this.get(k));
   }
@@ -175,8 +171,6 @@ export default class NanoSpeedCache<V = any> {
     keys.forEach((k) => this.del(k));
     return this;
   }
-
-  // ───────────────────────────── Async Helpers ─────────────────────────────
 
   async getOrSet(key: string, loader: () => Promise<V>, ttl = this.opts.defaultTTL): Promise<V> {
     const existing = this.get(key);
@@ -193,7 +187,6 @@ export default class NanoSpeedCache<V = any> {
         .catch((err) => {
           this._pending.delete(key);
 
-          // stale-if-error
           if (this.opts.staleIfError > 0) {
             const oldEntry = this._map.get(key);
             const oldValue = oldEntry?.v;
@@ -217,8 +210,6 @@ export default class NanoSpeedCache<V = any> {
   wrap(key: string, loader: () => Promise<V>, ttl?: number): () => Promise<V> {
     return () => this.getOrSet(key, loader, ttl);
   }
-
-  // ───────────────────────────── Introspection ─────────────────────────────
 
   get size(): number {
     return this._map.size;
@@ -253,8 +244,6 @@ export default class NanoSpeedCache<V = any> {
     return { size: this.size, expired, estimatedBytes: bytes };
   }
 
-  // ───────────────────────────── Events ─────────────────────────────
-
   on(event: EventType, callback: EventCallback): this {
     const list = this._events.get(event);
     if (list) list.push(callback);
@@ -275,8 +264,6 @@ export default class NanoSpeedCache<V = any> {
       try { cb({ key, value, reason }); } catch {}
     }
   }
-
-  // ───────────────────────────── Internal ─────────────────────────────
 
   private _startCleanupTimer(): void {
     if (this._timer) return;
@@ -361,8 +348,6 @@ export default class NanoSpeedCache<V = any> {
     if (val && typeof val === 'object') return Object.keys(val).length * 64;
     return 100;
   }
-
-  // ───────────────────────────── Cleanup ─────────────────────────────
 
   dispose(): void {
     if (this._timer) {
