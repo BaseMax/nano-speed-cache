@@ -1,11 +1,11 @@
 {
-  "name": "nano-cache",
+  "name": "nano-speed-cache",
   "type": "module",
   "version": "2.2.0",
   "description": "Ultra-small (<5KB) full-featured in-memory cache with TTL, LRU, stale-while-revalidate, async deduplication and zero dependencies",
-  "main": "dist/nano-cache.js",
-  "module": "dist/nano-cache.js",
-  "types": "dist/nano-cache.d.ts",
+  "main": "dist/nano-speed-cache.js",
+  "module": "dist/nano-speed-cache.js",
+  "types": "dist/nano-speed-cache.d.ts",
   "files": [
     "dist"
   ],
@@ -29,12 +29,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/BaseMax/nano-cache.git"
+    "url": "git+https://github.com/BaseMax/nano-speed-cache.git"
   },
   "bugs": {
-    "url": "https://github.com/BaseMax/nano-cache/issues"
+    "url": "https://github.com/BaseMax/nano-speed-cache/issues"
   },
-  "homepage": "https://github.com/BaseMax/nano-cache#readme",
+  "homepage": "https://github.com/BaseMax/nano-speed-cache#readme",
   "devDependencies": {
     "typescript": "^5.9.3"
   }

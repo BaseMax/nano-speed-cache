@@ -1,6 +1,6 @@
-import NanoCache from './dist/nano-cache.js'
+import NanoSpeedCache from './dist/nano-speed-cache.js'
 
-const cache = new NanoCache({
+const cache = new NanoSpeedCache({
   defaultTTL: 60_000,
   maxSize: 5000,
   staleWhileRevalidate: 30_000,

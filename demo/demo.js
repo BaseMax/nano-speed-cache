@@ -1,6 +1,6 @@
-const NanoCache = require('nano-cache');
+const NanoSpeedCache = require('nano-speed-cache');
 
-const cache = new NanoCache({
+const cache = new NanoSpeedCache({
   defaultTTL: 60_000,
   maxSize: 5000,
   staleWhileRevalidate: 30_000,

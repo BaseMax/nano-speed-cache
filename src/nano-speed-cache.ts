@@ -1,6 +1,12 @@
 /**
- * nano-cache v2 — The smallest full-featured in-memory cache
- * ~4.3 KB gzipped · Zero dependencies · Node ≥14 / Deno / Bun / Browser / Workers
+ * 
+ * @name: nano-speed-cache
+ * @author: Seyyed Ali Mohammadiyeh (Max Base)
+ * @github: https://github.com/basemax/nano-speed-cache
+ * @website: https://mohammadiyeh.com/
+ * @license: MIT
+ * @date: 12/05/2025
+ * 
  */
 
 export type DisposeValue<V = any> = (
@@ -9,7 +15,7 @@ export type DisposeValue<V = any> = (
   reason: 'expire' | 'lru' | 'delete' | 'clear'
 ) => void;
 
-export interface NanoCacheOptions<V = any> {
+export interface NanoSpeedCacheOptions<V = any> {
   /** Default TTL in milliseconds (0 = no expiration) */
   defaultTTL?: number;
   /** Max number of entries before LRU eviction (0 = unlimited) */
@@ -38,8 +44,8 @@ interface CacheEntry<V> {
 type EventType = 'expire' | 'evict';
 type EventCallback = (info: { key: string; value: any; reason: string }) => void;
 
-export default class NanoCache<V = any> {
-  private static readonly DEFAULTS: Required<NanoCacheOptions> = {
+export default class NanoSpeedCache<V = any> {
+  private static readonly DEFAULTS: Required<NanoSpeedCacheOptions> = {
     defaultTTL: 0,
     maxSize: 0,
     checkPeriod: 10_000,
@@ -50,7 +56,7 @@ export default class NanoCache<V = any> {
     disposeValue: null,
   };
 
-  private readonly opts: Required<NanoCacheOptions<V>>;
+  private readonly opts: Required<NanoSpeedCacheOptions<V>>;
   private readonly _map = new Map<string, CacheEntry<V>>();
   private _timer: ReturnType<typeof setInterval> | null = null;
   private readonly _events = new Map<EventType, EventCallback[]>([
@@ -59,12 +65,10 @@ export default class NanoCache<V = any> {
   ]);
   private _pending = new Map<string, Promise<V>>(); // for getOrSet deduplication
 
-  constructor(options: NanoCacheOptions<V> = {}) {
-    this.opts = { ...NanoCache.DEFAULTS, ...options };
+  constructor(options: NanoSpeedCacheOptions<V> = {}) {
+    this.opts = { ...NanoSpeedCache.DEFAULTS, ...options };
     if (this.opts.checkPeriod > 0) this._startCleanupTimer();
   }
-
-  // ───────────────────────────── Core API ─────────────────────────────
 
   set(key: string, value: V, ttl = this.opts.defaultTTL): this {
     const now = Date.now();
@@ -371,4 +375,4 @@ export default class NanoCache<V = any> {
   }
 }
 
-export { NanoCache };
+export { NanoSpeedCache };
