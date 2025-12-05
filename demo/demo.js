@@ -6,6 +6,4 @@ const cache = new NanoSpeedCache({
   staleWhileRevalidate: 30_000,
   useClone: true
 });
-
-cache.set('user:123', { name: 'Alice' }, 120000);
-console.log(cache.get('user:123'));
+g(cache.get('user:123'));
