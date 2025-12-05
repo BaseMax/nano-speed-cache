@@ -1,7 +1,7 @@
 {
   "name": "nano-speed-cache",
   "type": "module",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Ultra-small (<5KB) full-featured in-memory cache with TTL, LRU, stale-while-revalidate, async deduplication and zero dependencies",
   "main": "dist/nano-speed-cache.js",
   "module": "dist/nano-speed-cache.js",
