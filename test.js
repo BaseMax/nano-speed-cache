@@ -70,21 +70,21 @@ console.log('\nTest 3: LRU eviction');
 {
   const cache = new NanoSpeedCache({ maxSize: 3 });
   cache.set('a', 1);
-  await sleep(5);
+  await sleep(10);
   cache.set('b', 2);
-  await sleep(5);
+  await sleep(10);
   cache.set('c', 3);
   
   assertEquals(cache.size, 3, 'Cache size at max');
   
   // Access 'a' and 'c' to make them more recent with time gaps
-  await sleep(5);
+  await sleep(10);
   cache.get('a');
-  await sleep(5);
+  await sleep(10);
   cache.get('c');
   
   // Add new item, should evict 'b' (least recently used)
-  await sleep(5);
+  await sleep(10);
   cache.set('d', 4);
   
   assertEquals(cache.size, 3, 'Cache size stays at max after eviction');

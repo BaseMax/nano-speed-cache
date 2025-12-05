@@ -142,7 +142,6 @@ The test suite covers:
 - ✅ LRU eviction algorithm
 - ✅ Stale-while-revalidate
 - ✅ Async operations and deduplication
-- ✅ Bulk operations (mget, mset, mdel)
 - ✅ Statistics and monitoring
 - ✅ Event listeners
 - ✅ Cache management (clear, del)
@@ -150,6 +149,7 @@ The test suite covers:
 ## Future Test Improvements
 
 Potential areas for additional testing:
+- Bulk operations (mget, mset, mdel)
 - Stale-if-error functionality
 - Deep cloning with `useClone` option
 - Disposal callbacks with `disposeValue`
